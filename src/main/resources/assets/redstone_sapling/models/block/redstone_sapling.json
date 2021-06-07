@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "redstone_sapling:block/redstone_sapling"
+  }
+}

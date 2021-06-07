@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "redstone_sapling",
+  "version": "${version}",
+  "name": "Redstone Sapling",
+  "description": "Adds redstone sapling",
+  "authors": [
+    "MrMelon54"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/redstone_sapling/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.onpointcoding.redstone_sapling.client.RedstoneSaplingClient"
+    ],
+    "main": [
+      "net.onpointcoding.redstone_sapling.RedstoneSapling"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}
