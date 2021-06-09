@@ -12,9 +12,9 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.UniformIntDistribution;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
@@ -29,9 +29,9 @@ import net.onpointcoding.redstone_sapling.generator.RedstoneSaplingGenerator;
 
 public class RedstoneSapling implements ModInitializer {
     public static final Block REDSTONE_SAPLING = new RedstoneSaplingBlock(new RedstoneSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS));
-    public static final Block POTTED_REDSTONE_SAPLING = new RedstoneSaplingFlowerPotBlock(REDSTONE_SAPLING, AbstractBlock.Settings.of(Material.SUPPORTED).breakInstantly().nonOpaque());
+    public static final Block POTTED_REDSTONE_SAPLING = new RedstoneSaplingFlowerPotBlock(REDSTONE_SAPLING, AbstractBlock.Settings.of(Material.DECORATION).breakInstantly().nonOpaque());
 
-    public static final ConfiguredFeature<TreeFeatureConfig, ?> REDSTONE_TREE = registerConfiguredFeature("redstone_tree", Feature.TREE.configure((new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.REDSTONE_BLOCK.getDefaultState()), new SimpleBlockStateProvider(Blocks.REDSTONE_LAMP.getDefaultState()), new BlobFoliagePlacer(UniformIntDistribution.of(2), UniformIntDistribution.of(0), 3), new StraightTrunkPlacer(4, 2, 0), new TwoLayersFeatureSize(1, 0, 1))).ignoreVines().build()));
+    public static final ConfiguredFeature<TreeFeatureConfig, ?> REDSTONE_TREE = registerConfiguredFeature("redstone_tree", Feature.TREE.configure((new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.REDSTONE_BLOCK.getDefaultState()), new StraightTrunkPlacer(4, 2, 0), new SimpleBlockStateProvider(Blocks.REDSTONE_LAMP.getDefaultState()), new SimpleBlockStateProvider(REDSTONE_SAPLING.getDefaultState()), new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3), new TwoLayersFeatureSize(1, 0, 1))).ignoreVines().build()));
 
     @Override
     public void onInitialize() {
